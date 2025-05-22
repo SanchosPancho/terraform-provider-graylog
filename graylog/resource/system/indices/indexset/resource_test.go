@@ -62,7 +62,7 @@ func TestAccIndexSet(t *testing.T) {
 					"retention_strategy", "retention_strategy_class",
 					"index_analyzer", "index_optimization_max_num_segments",
 					"index_optimization_disabled", "field_type_refresh_interval",
-					"creation_date", "writable",
+					"creation_date", "writable", "use_legacy_rotation",
 				}
 				if err := testutil.EqualMapKeys(body, keys...); err != nil {
 					t.Fatal(err)
@@ -96,6 +96,7 @@ func TestAccIndexSet(t *testing.T) {
     "max_number_of_indices": 30
   },
   "creation_date": "2020-04-21T12:56:41.97Z",
+  "use_legacy_rotation": true,
   "index_analyzer": "standard",
   "index_optimization_max_num_segments": 1,
   "index_optimization_disabled": true,
@@ -127,6 +128,7 @@ func TestAccIndexSet(t *testing.T) {
     "max_number_of_indices": 30
   },
   "creation_date": "2020-04-21T12:56:41.97Z",
+  "use_legacy_rotation": true,
   "index_analyzer": "standard",
   "index_optimization_max_num_segments": 1,
   "index_optimization_disabled": true,
@@ -162,6 +164,7 @@ func TestAccIndexSet(t *testing.T) {
 resource "graylog_index_set" "test" {
   title                               = "test"
   index_prefix                        = "terraform-provider-graylog-test"
+  use_legacy_rotation	 			  = true
   rotation_strategy_class             = "org.graylog2.indexer.rotation.strategies.MessageCountRotationStrategy"
   retention_strategy_class            = "org.graylog2.indexer.retention.strategies.DeletionRetentionStrategy"
   description                         = "test"
@@ -212,7 +215,7 @@ EOF
 					"retention_strategy", "retention_strategy_class",
 					"index_analyzer", "index_optimization_max_num_segments",
 					"index_optimization_disabled", "field_type_refresh_interval",
-					"creation_date", "writable",
+					"creation_date", "writable", "use_legacy_rotation",
 				}
 				if err := testutil.EqualMapKeys(body, keys...); err != nil {
 					t.Fatal(err)
@@ -298,6 +301,7 @@ EOF
 resource "graylog_index_set" "test" {
   title                               = "test updated"
   index_prefix                        = "terraform-provider-graylog-test"
+  use_legacy_rotation				  = true
   rotation_strategy_class             = "org.graylog2.indexer.rotation.strategies.MessageCountRotationStrategy"
   retention_strategy_class            = "org.graylog2.indexer.retention.strategies.DeletionRetentionStrategy"
   description                         = "test"
