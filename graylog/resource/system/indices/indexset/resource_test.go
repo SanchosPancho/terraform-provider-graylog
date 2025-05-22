@@ -11,7 +11,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/suzuki-shunsuke/flute/v2/flute"
 
-	"github.com/zahiar/terraform-provider-graylog/graylog/testutil"
+	"github.com/SanchosPancho/terraform-provider-graylog/graylog/testutil"
 )
 
 func TestAccIndexSet(t *testing.T) {
@@ -246,6 +246,7 @@ EOF
     "max_number_of_indices": 40
   },
   "creation_date": "2020-04-21T12:56:41.97Z",
+  "use_legacy_rotation": true,
   "index_analyzer": "standard",
   "index_optimization_max_num_segments": 1,
   "index_optimization_disabled": true,
@@ -277,6 +278,7 @@ EOF
     "max_number_of_indices": 40
   },
   "creation_date": "2020-04-21T12:56:41.97Z",
+  "use_legacy_rotation": true,
   "index_analyzer": "standard",
   "index_optimization_max_num_segments": 1,
   "index_optimization_disabled": true,

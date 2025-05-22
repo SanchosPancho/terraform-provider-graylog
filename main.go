@@ -4,7 +4,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/plugin"
 
-	"github.com/zahiar/terraform-provider-graylog/graylog"
+	"github.com/SanchosPancho/terraform-provider-graylog/graylog"
 )
 
 func main() {

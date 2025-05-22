@@ -3,7 +3,7 @@ package setting
 import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-	"github.com/zahiar/terraform-provider-graylog/graylog/convert"
+	"github.com/SanchosPancho/terraform-provider-graylog/graylog/convert"
 )
 
 const (

@@ -1,4 +1,4 @@
-module github.com/zahiar/terraform-provider-graylog
+module github.com/SanchosPancho/terraform-provider-graylog
 
 go 1.17
 

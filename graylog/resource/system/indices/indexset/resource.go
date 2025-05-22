@@ -3,7 +3,7 @@ package indexset
 import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-	"github.com/zahiar/terraform-provider-graylog/graylog/util"
+	"github.com/SanchosPancho/terraform-provider-graylog/graylog/util"
 )
 
 func Resource() *schema.Resource {
@@ -93,6 +93,11 @@ func Resource() *schema.Resource {
 			// field_type_refresh_interval was added from Graylog API v3
 			"field_type_refresh_interval": {
 				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			// use_legacy_rotation was added from Graylog API v4
+			"use_legacy_rotation": {
+				Type:     schema.TypeBool,
 				Optional: true,
 			},
 		},
