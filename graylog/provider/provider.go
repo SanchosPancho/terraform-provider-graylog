@@ -54,7 +54,7 @@ func SchemaMap() map[string]*schema.Schema {
 			Optional: true,
 			DefaultFunc: schema.MultiEnvDefaultFunc([]string{
 				"GRAYLOG_API_VERSION",
-			}, "v4"),
+			}, "v3"),
 		},
 	}
 }
