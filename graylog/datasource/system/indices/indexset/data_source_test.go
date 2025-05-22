@@ -1,7 +1,7 @@
 package indexset
 
 import (
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 	"testing"
@@ -30,7 +30,7 @@ func TestAccIndexSet(t *testing.T) {
 			Response: func(req *http.Request) (*http.Response, error) {
 				return &http.Response{
 					StatusCode: 200,
-					Body: ioutil.NopCloser(strings.NewReader(`{
+					Body: io.NopCloser(strings.NewReader(`{
   "total": 3,
   "index_sets": [
     {
@@ -175,7 +175,7 @@ func TestAccIndexSet_byIndexSetID(t *testing.T) {
 			Response: func(req *http.Request) (*http.Response, error) {
 				return &http.Response{
 					StatusCode: 200,
-					Body: ioutil.NopCloser(strings.NewReader(`{
+					Body: io.NopCloser(strings.NewReader(`{
   "id": "5ea81cc02ab79c00129dbf1c",
   "title": "Graylog Events",
   "description": "Stores Graylog events.",

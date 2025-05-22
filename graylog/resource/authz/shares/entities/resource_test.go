@@ -1,7 +1,7 @@
 package entities
 
 import (
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 	"testing"
@@ -29,7 +29,7 @@ func TestAccShareEntity(t *testing.T) {
 			Response: func(req *http.Request) (*http.Response, error) {
 				return &http.Response{
 					StatusCode: 200,
-					Body: ioutil.NopCloser(strings.NewReader(`{
+					Body: io.NopCloser(strings.NewReader(`{
     "active_shares": [
         {
             "capability": "view",
@@ -98,7 +98,7 @@ func TestAccShareEntity(t *testing.T) {
 			Response: func(req *http.Request) (*http.Response, error) {
 				return &http.Response{
 					StatusCode: 200,
-					Body: ioutil.NopCloser(strings.NewReader(`{
+					Body: io.NopCloser(strings.NewReader(`{
     "active_shares": [
         {
             "capability": "view",

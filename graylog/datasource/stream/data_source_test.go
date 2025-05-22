@@ -1,7 +1,7 @@
 package stream
 
 import (
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 	"testing"
@@ -30,7 +30,7 @@ func TestAccStream(t *testing.T) {
 			Response: func(req *http.Request) (*http.Response, error) {
 				return &http.Response{
 					StatusCode: 200,
-					Body: ioutil.NopCloser(strings.NewReader(`{
+					Body: io.NopCloser(strings.NewReader(`{
   "total": 3,
   "streams": [
     {
@@ -142,7 +142,7 @@ func TestAccStream_byStreamID(t *testing.T) {
 			Response: func(req *http.Request) (*http.Response, error) {
 				return &http.Response{
 					StatusCode: 200,
-					Body: ioutil.NopCloser(strings.NewReader(`{
+					Body: io.NopCloser(strings.NewReader(`{
   "id": "000000000000000000000003",
   "creator_user_id": "admin",
   "outputs": [],

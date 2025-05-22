@@ -3,7 +3,7 @@ package staticfield
 import (
 	"bytes"
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 	"testing"
@@ -63,7 +63,7 @@ func TestAccInputStaticFields(t *testing.T) {
 				}
 				return &http.Response{
 					StatusCode: 200,
-					Body:       ioutil.NopCloser(b),
+					Body:       io.NopCloser(b),
 				}, nil
 			},
 		},

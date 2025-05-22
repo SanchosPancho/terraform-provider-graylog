@@ -1,7 +1,7 @@
 package sidecar
 
 import (
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 	"testing"
@@ -30,7 +30,7 @@ func TestAccSidecar(t *testing.T) {
 			Response: func(req *http.Request) (*http.Response, error) {
 				return &http.Response{
 					StatusCode: 200,
-					Body: ioutil.NopCloser(strings.NewReader(`{
+					Body: io.NopCloser(strings.NewReader(`{
   "query": "",
   "total": 1,
   "only_active": false,
@@ -128,7 +128,7 @@ func TestAccSidecar_BySidecarID(t *testing.T) {
 			Response: func(req *http.Request) (*http.Response, error) {
 				return &http.Response{
 					StatusCode: 200,
-					Body: ioutil.NopCloser(strings.NewReader(`{
+					Body: io.NopCloser(strings.NewReader(`{
   "active": true,
   "node_id": "10517347-8fad-4f25-835f-95d1943fa338",
   "node_name": "cd406329ee4f",

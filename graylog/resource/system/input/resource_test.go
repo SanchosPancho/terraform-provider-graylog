@@ -1,7 +1,7 @@
 package input
 
 import (
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 	"testing"
@@ -32,7 +32,7 @@ func TestAccInput(t *testing.T) {
 			Response: func(req *http.Request) (*http.Response, error) {
 				return &http.Response{
 					StatusCode: 200,
-					Body:       ioutil.NopCloser(strings.NewReader(inputBody)),
+					Body:       io.NopCloser(strings.NewReader(inputBody)),
 				}, nil
 			},
 		},

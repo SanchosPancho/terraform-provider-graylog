@@ -2,7 +2,7 @@ package sidecar
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 	"testing"
@@ -190,7 +190,7 @@ func TestAccSidecar(t *testing.T) {
 			Response: func(req *http.Request) (*http.Response, error) {
 				return &http.Response{
 					StatusCode: 200,
-					Body:       ioutil.NopCloser(strings.NewReader(sidecarBody)),
+					Body:       io.NopCloser(strings.NewReader(sidecarBody)),
 				}, nil
 			},
 		},

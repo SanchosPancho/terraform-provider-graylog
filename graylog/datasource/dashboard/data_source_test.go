@@ -1,7 +1,7 @@
 package dashboard
 
 import (
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 	"testing"
@@ -30,7 +30,7 @@ func TestAccDashboard(t *testing.T) {
 			Response: func(req *http.Request) (*http.Response, error) {
 				return &http.Response{
 					StatusCode: 200,
-					Body: ioutil.NopCloser(strings.NewReader(`{
+					Body: io.NopCloser(strings.NewReader(`{
   "total": 2,
   "dashboards": [
     {
@@ -101,7 +101,7 @@ func TestAccDashboard2(t *testing.T) {
 			Response: func(req *http.Request) (*http.Response, error) {
 				return &http.Response{
 					StatusCode: 200,
-					Body: ioutil.NopCloser(strings.NewReader(`{
+					Body: io.NopCloser(strings.NewReader(`{
   "total": 1,
   "views": [
     {
@@ -181,7 +181,7 @@ func TestAccDashboard_ByDashboardID(t *testing.T) {
 			Response: func(req *http.Request) (*http.Response, error) {
 				return &http.Response{
 					StatusCode: 200,
-					Body: ioutil.NopCloser(strings.NewReader(`{
+					Body: io.NopCloser(strings.NewReader(`{
   "creator_user_id": "admin",
   "description": "hello",
   "created_at": "2020-04-28T13:36:27.559Z",

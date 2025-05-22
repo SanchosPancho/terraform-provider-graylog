@@ -2,7 +2,7 @@ package indexset
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 	"testing"
@@ -37,7 +37,7 @@ func TestAccIndexSet(t *testing.T) {
 			Response: func(req *http.Request) (*http.Response, error) {
 				return &http.Response{
 					StatusCode: 200,
-					Body:       ioutil.NopCloser(strings.NewReader(indexsetBody)),
+					Body:       io.NopCloser(strings.NewReader(indexsetBody)),
 				}, nil
 			},
 		},

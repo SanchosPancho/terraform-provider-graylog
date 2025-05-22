@@ -1,7 +1,7 @@
 package token
 
 import (
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 	"testing"
@@ -28,7 +28,7 @@ func TestAccUserToken(t *testing.T) {
 			Response: func(req *http.Request) (*http.Response, error) {
 				return &http.Response{
 					StatusCode: 200,
-					Body: ioutil.NopCloser(strings.NewReader(`{
+					Body: io.NopCloser(strings.NewReader(`{
     "tokens": [
         {
             "id": "62aca4d45036cb55b711f259",
@@ -60,7 +60,7 @@ func TestAccUserToken(t *testing.T) {
 			Response: func(req *http.Request) (*http.Response, error) {
 				return &http.Response{
 					StatusCode: 200,
-					Body: ioutil.NopCloser(strings.NewReader(`{
+					Body: io.NopCloser(strings.NewReader(`{
   "id": "62aca4d45036cb55b711f259",
   "last_access": "1970-01-01T00:00:00.000Z",
   "name": "toto",
@@ -83,7 +83,7 @@ func TestAccUserToken(t *testing.T) {
 			Response: func(req *http.Request) (*http.Response, error) {
 				return &http.Response{
 					StatusCode: 200,
-					Body:       ioutil.NopCloser(strings.NewReader(`{}`)),
+					Body:       io.NopCloser(strings.NewReader(`{}`)),
 				}, nil
 			},
 		},
