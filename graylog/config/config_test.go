@@ -13,7 +13,7 @@ func TestConfig_LoadAndValidate(t *testing.T) {
 		AuthName:     "xxx",
 		AuthPassword: "token",
 		XRequestedBy: "terraform-provider-graylog",
-		APIVersion:   "v4",
+		APIVersion:   "v3",
 	}
 	require.Nil(t, cfg.LoadAndValidate())
 }
