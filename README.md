@@ -1,3 +1,10 @@
+# ATTENTION
+This repository was forked from https://github.com/zahiar/terraform-provider-graylog
+First of all - thank's to @zahiar for his hard work on this project.
+
+This fork will be adapted for version 5+ when time permits.
+By using this provider, you accept full responsibility for any consequences that may occur.
+
 # Terraform Provider: Graylog
 This is a Terraform provider for managing resources within [Graylog](https://docs.graylog.org/).
 
