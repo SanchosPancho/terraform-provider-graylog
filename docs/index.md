@@ -10,7 +10,7 @@ The Graylog provider is used to manage [Graylog](https://docs.graylog.org/)'s va
 # Configure Graylog Provider
 provider "graylog" {
   web_endpoint_uri = "http://example.com/api"
-  api_version      = "v3"
+  api_version      = "v4"
 }
 
 # Create a Input
@@ -65,11 +65,11 @@ auth_password = "session"
 
 ## Relation to go-graylog
 
-We originally developed [go-graylog](https://github.com/suzuki-shunsuke/go-graylog), which provides Go's API client and Terraform provider for Graylog.  
-But at go-graylog there are some structural challenges and it is difficult to support Graylog's complicated and undocumented API.  
+We originally developed [go-graylog](https://github.com/suzuki-shunsuke/go-graylog), which provides Go's API client and Terraform provider for Graylog.
+But at go-graylog there are some structural challenges and it is difficult to support Graylog's complicated and undocumented API.
 So we decided to develop a new provider from scratch as the successor of go-graylog.
 
-This provider supports all resources which are supported by go-graylog.  
+This provider supports all resources which are supported by go-graylog.
 Unfortunately there are some breaking changes and we have to fix Terraform configuration (.tf files) manually to migrate from go-graylog.
 
 For detail, please see the following pages.

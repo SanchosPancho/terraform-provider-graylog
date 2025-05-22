@@ -7,7 +7,7 @@ you can install it like so (for Terraform 0.14+):
 ```hcl
 provider "graylog" {
   web_endpoint_uri = "http://example.com/api"
-  api_version      = "v3"
+  api_version      = "v4"
 }
 
 terraform {
