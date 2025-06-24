@@ -100,6 +100,28 @@ func Resource() *schema.Resource {
 				Type:     schema.TypeBool,
 				Optional: true,
 			},
+			// Whether this index set can be made the default
+			"can_be_default": {
+				Type:     schema.TypeBool,
+				Optional: true,
+			},
+			// Index template type (e.g. "legacy" or "v2")
+			"index_template_type": {
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			// Field type profile ID to attach to this index
+			"field_type_profile": {
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			// JSON config for data-tiering (type, index_lifetime_min, index_lifetime_max)
+			"data_tiering": {
+				Type:             schema.TypeString,
+				Optional:         true,
+				DiffSuppressFunc: util.SchemaDiffSuppressJSONString,
+				ValidateFunc:     util.ValidateIsJSON,
+			},
 		},
 	}
 }
