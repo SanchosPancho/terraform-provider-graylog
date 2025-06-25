@@ -20,11 +20,7 @@
 * `default` - (Optional) The data type is `bool`.
 * `field_type_refresh_interval` - (Optional) The data type is `int`.
 * `use_legacy_rotation` - (Optional) The legacy rotation flag, added in graylog 6+, used with old(legacy) rotation\retention strategy(default false) `bool`.
-* `can_be_default` - (Optional) whether this index set can be made the default. The data type is `bool`.
-* `index_template_type` - (Optional) the index template type to apply (e.g. legacy or v2). The data type is `string`.
-* `field_type_profile` - (Optional) the field type profile ID to attach to this index set. The data type is `string`.
 * `data_tiering` - (Optional) the data-tiering configuration for this index set in JSON format (type, index_lifetime_min, index_lifetime_max). The data type is `JSON string`.
-* `data_tiering_status` - (Computed) the current status of data-tiering for this index set. The data type is `string`.
 
 ## Attributes Reference
 
