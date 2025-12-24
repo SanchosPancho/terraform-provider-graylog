@@ -62,7 +62,7 @@ func TestAccIndexSet(t *testing.T) {
 					"retention_strategy", "retention_strategy_class",
 					"index_analyzer", "index_optimization_max_num_segments",
 					"index_optimization_disabled", "field_type_refresh_interval",
-					"creation_date", "writable", "use_legacy_rotation",
+					"creation_date", "writable", "use_legacy_rotation", "data_tiering",
 				}
 				if err := testutil.EqualMapKeys(body, keys...); err != nil {
 					t.Fatal(err)
@@ -175,9 +175,11 @@ resource "graylog_index_set" "test" {
   replicas                            = 1
   index_optimization_max_num_segments = 1
   field_type_refresh_interval         = 5000
-  data_tiering = jsonencode({
-    enabled = false
-  })
+  data_tiering = {
+	"type" : "hot_only",
+	"index_lifetime_min" : "P7D",
+	"index_lifetime_max" : "P14D"
+  }
   retention_strategy = <<EOF
 {
   "max_number_of_indices": 30,
@@ -314,9 +316,11 @@ resource "graylog_index_set" "test" {
   replicas                            = 1
   index_optimization_max_num_segments = 1
   field_type_refresh_interval         = 5000
-  data_tiering = jsonencode({
-    enabled = false
-  })
+  data_tiering = {
+	"type" : "hot_only",
+	"index_lifetime_min" : "P7D",
+	"index_lifetime_max" : "P14D"
+  }
 
   retention_strategy = <<EOF
 {
