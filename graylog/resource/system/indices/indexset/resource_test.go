@@ -101,6 +101,11 @@ func TestAccIndexSet(t *testing.T) {
   "index_optimization_max_num_segments": 1,
   "index_optimization_disabled": true,
   "field_type_refresh_interval": 5000,
+  "data_tiering": {
+    "type" : "hot_only",
+    "index_lifetime_min" : "P7D",
+    "index_lifetime_max" : "P14D"
+  },
   "writable": true,
   "default": false
 }`
@@ -133,6 +138,11 @@ func TestAccIndexSet(t *testing.T) {
   "index_optimization_max_num_segments": 1,
   "index_optimization_disabled": true,
   "field_type_refresh_interval": 5000,
+  "data_tiering": {
+    "type" : "hot_only",
+    "index_lifetime_min" : "P7D",
+    "index_lifetime_max" : "P14D"
+  },
   "writable": true,
   "default": false
 }`,
@@ -175,7 +185,13 @@ resource "graylog_index_set" "test" {
   replicas                            = 1
   index_optimization_max_num_segments = 1
   field_type_refresh_interval         = 5000
-  data_tiering 						  = null
+  data_tiering = <<EOF
+{
+	"type" : "hot_only",
+	"index_lifetime_min" : "P7D",
+	"index_lifetime_max" : "P14D"
+}
+EOF
 
   retention_strategy = <<EOF
 {
@@ -216,7 +232,7 @@ EOF
 					"retention_strategy", "retention_strategy_class",
 					"index_analyzer", "index_optimization_max_num_segments",
 					"index_optimization_disabled", "field_type_refresh_interval",
-					"creation_date", "writable", "use_legacy_rotation",
+					"creation_date", "writable", "use_legacy_rotation", "data_tiering",
 				}
 				if err := testutil.EqualMapKeys(body, keys...); err != nil {
 					t.Fatal(err)
@@ -256,6 +272,11 @@ EOF
   "index_optimization_disabled": true,
   "field_type_refresh_interval": 5000,
   "writable": true,
+  "data_tiering": {
+    "type" : "hot_only",
+    "index_lifetime_min" : "P7D",
+    "index_lifetime_max" : "P14D"
+  },
   "default": false
 }`
 			},
@@ -288,6 +309,11 @@ EOF
   "index_optimization_disabled": true,
   "field_type_refresh_interval": 5000,
   "writable": true,
+  "data_tiering": {
+    "type" : "hot_only",
+    "index_lifetime_min" : "P7D",
+    "index_lifetime_max" : "P14D"
+  },
   "default": false
 }`,
 		},
@@ -313,8 +339,13 @@ resource "graylog_index_set" "test" {
   replicas                            = 1
   index_optimization_max_num_segments = 1
   field_type_refresh_interval         = 5000
-  data_tiering 						  = null
-
+  data_tiering = <<EOF
+{
+	"type" : "hot_only",
+	"index_lifetime_min" : "P7D",
+	"index_lifetime_max" : "P14D"
+}
+EOF
 
   retention_strategy = <<EOF
 {
