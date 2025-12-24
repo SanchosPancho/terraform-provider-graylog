@@ -312,7 +312,7 @@ resource "graylog_index_set" "test" {
   replicas                            = 1
   index_optimization_max_num_segments = 1
   field_type_refresh_interval         = 5000
-
+  data_tiering						  = "null"
   retention_strategy = <<EOF
 {
   "max_number_of_indices": 40,
