@@ -175,11 +175,14 @@ resource "graylog_index_set" "test" {
   replicas                            = 1
   index_optimization_max_num_segments = 1
   field_type_refresh_interval         = 5000
-  data_tiering = {
-	"type" : "hot_only",
-	"index_lifetime_min" : "P7D",
-	"index_lifetime_max" : "P14D"
-  }
+  data_tiering = <<EOF
+{
+  "type" : "hot_only",
+  "index_lifetime_min" : "P7D",
+  "index_lifetime_max" : "P14D"
+}
+EOF
+
   retention_strategy = <<EOF
 {
   "max_number_of_indices": 30,
@@ -316,11 +319,13 @@ resource "graylog_index_set" "test" {
   replicas                            = 1
   index_optimization_max_num_segments = 1
   field_type_refresh_interval         = 5000
-  data_tiering = {
-	"type" : "hot_only",
-	"index_lifetime_min" : "P7D",
-	"index_lifetime_max" : "P14D"
-  }
+  data_tiering = <<EOF
+{
+  "type" : "hot_only",
+  "index_lifetime_min" : "P7D",
+  "index_lifetime_max" : "P14D"
+}
+EOF
 
   retention_strategy = <<EOF
 {
