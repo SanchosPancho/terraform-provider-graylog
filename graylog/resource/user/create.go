@@ -6,6 +6,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 	"github.com/SanchosPancho/terraform-provider-graylog/graylog/client"
+	"github.com/SanchosPancho/terraform-provider-graylog/graylog/client/api"
 )
 
 func create(d *schema.ResourceData, m interface{}) error {
@@ -15,7 +16,7 @@ func create(d *schema.ResourceData, m interface{}) error {
 		return err
 	}
 	data, err := getDataFromResourceData(d)
-	if cl.APIVersion == "v4" {
+	if api.UsesUserIDs(cl.APIVersion) {
 		delete(data, "full_name")
 	} else {
 		delete(data, "first_name")
@@ -32,7 +33,7 @@ func create(d *schema.ResourceData, m interface{}) error {
 	if err != nil {
 		return err
 	}
-	if cl.APIVersion == "v4" {
+	if api.UsesUserIDs(cl.APIVersion) {
 		// Here we use v3 to retrieve the user information since the id is not returned by the API on creation
 		new_data, _, _ := cl.User.Get(ctx, data[keyUsername].(string), "v3")
 		err = d.Set("full_name", new_data["full_name"])

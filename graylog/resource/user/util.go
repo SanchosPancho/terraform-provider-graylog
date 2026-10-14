@@ -3,6 +3,7 @@ package user
 import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
+	"github.com/SanchosPancho/terraform-provider-graylog/graylog/client/api"
 	"github.com/SanchosPancho/terraform-provider-graylog/graylog/convert"
 )
 
@@ -36,7 +37,7 @@ func setDataToResourceData(d *schema.ResourceData, data map[string]interface{}, 
 	if err := convert.SetResourceData(d, Resource(), data); err != nil {
 		return err
 	}
-	if api_version == "v4" {
+	if api.UsesUserIDs(api_version) {
 		d.SetId(data["id"].(string))
 	} else {
 		d.SetId(data[keyUsername].(string))

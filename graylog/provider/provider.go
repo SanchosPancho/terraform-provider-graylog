@@ -50,8 +50,9 @@ func SchemaMap() map[string]*schema.Schema {
 			}, "terraform-provider-graylog"),
 		},
 		"api_version": {
-			Type:     schema.TypeString,
-			Optional: true,
+			Description: "Compatibility mode: v3 (default), v4 for Graylog 4–6, or v7 for Graylog 7.x. This is not a URL path version.",
+			Type:        schema.TypeString,
+			Optional:    true,
 			DefaultFunc: schema.MultiEnvDefaultFunc([]string{
 				"GRAYLOG_API_VERSION",
 			}, "v3"),

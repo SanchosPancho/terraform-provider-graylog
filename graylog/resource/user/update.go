@@ -6,6 +6,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 	"github.com/SanchosPancho/terraform-provider-graylog/graylog/client"
+	"github.com/SanchosPancho/terraform-provider-graylog/graylog/client/api"
 )
 
 func update(d *schema.ResourceData, m interface{}) error {
@@ -21,7 +22,7 @@ func update(d *schema.ResourceData, m interface{}) error {
 	if err != nil {
 		return err
 	}
-	if cl.APIVersion == "v4" {
+	if api.UsesUserIDs(cl.APIVersion) {
 		save_full_name = data["full_name"]
 		delete(data, "full_name")
 		update_id = d.Id()
@@ -36,7 +37,7 @@ func update(d *schema.ResourceData, m interface{}) error {
 	if _, err := cl.User.Update(ctx, update_id, data); err != nil {
 		return err
 	}
-	if cl.APIVersion == "v4" {
+	if api.UsesUserIDs(cl.APIVersion) {
 		err = d.Set("full_name", save_full_name)
 		if err != nil {
 			return err

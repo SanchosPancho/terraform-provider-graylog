@@ -6,6 +6,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 	"github.com/SanchosPancho/terraform-provider-graylog/graylog/client"
+	"github.com/SanchosPancho/terraform-provider-graylog/graylog/client/api"
 )
 
 func destroy(d *schema.ResourceData, m interface{}) error {
@@ -15,7 +16,7 @@ func destroy(d *schema.ResourceData, m interface{}) error {
 		return err
 	}
 	var deleted_id string
-	if cl.APIVersion == "v4" {
+	if api.UsesUserIDs(cl.APIVersion) {
 		deleted_id = "id/" + d.Id()
 	} else {
 		deleted_id = d.Id()

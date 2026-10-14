@@ -104,10 +104,12 @@ func New(m interface{}) (Client, error) {
 			Client: httpClient,
 		},
 		EventDefinition: definition.Client{
-			Client: httpClient,
+			Client:     httpClient,
+			APIVersion: cfg.APIVersion,
 		},
 		EventNotification: notification.Client{
-			Client: httpClient,
+			Client:     httpClient,
+			APIVersion: cfg.APIVersion,
 		},
 		Extractor: extractor.Client{
 			Client: httpClient,
@@ -116,7 +118,8 @@ func New(m interface{}) (Client, error) {
 			Client: httpClient,
 		},
 		IndexSet: indexset.Client{
-			Client: httpClient,
+			Client:     httpClient,
+			APIVersion: cfg.APIVersion,
 		},
 		Input: input.Client{
 			Client: httpClient,
@@ -149,7 +152,8 @@ func New(m interface{}) (Client, error) {
 			Client: httpClient,
 		},
 		Stream: stream.Client{
-			Client: httpClient,
+			Client:     httpClient,
+			APIVersion: cfg.APIVersion,
 		},
 		StreamOutput: streamOutput.Client{
 			Client: httpClient,
@@ -158,7 +162,8 @@ func New(m interface{}) (Client, error) {
 			Client: httpClient,
 		},
 		View: view.Client{
-			Client: httpClient,
+			Client:     httpClient,
+			APIVersion: cfg.APIVersion,
 		},
 		User: user.Client{
 			Client: httpClient,

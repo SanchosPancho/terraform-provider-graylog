@@ -34,7 +34,7 @@ resource "graylog_input" "gelf_udp" {
 * `auth_name` - (Required) Username or API token or Session Token. It can also be sourced from the `GRAYLOG_AUTH_NAME` environment variable.
 * `auth_password` - (Required) Password or the literal `"token"` or `"session"`. It can also be sourced from the `GRAYLOG_AUTH_PASSWORD` environment variable.
 * `x_requested_by` - (Optional) [X-Requested-By Header](https://github.com/Graylog2/graylog2-server/blob/370dd700bc8ada5448bf66459dec9a85fcd22d58/UPGRADING.rst#protecting-against-csrf-http-header-required). The default value is `terraform-provider-graylog`. It can also be sourced from the `GRAYLOG_X_REQUESTED_BY` environment variable.
-* `api_version` - (Optional) Graylog API's version. The default value is `v3`. It can also be sourced from the `GRAYLOG_API_VERSION ` environment variable.
+* `api_version` - (Optional) Provider compatibility mode. Use `v7` for Graylog 7.x (checked against 7.1.10), `v4` for the existing Graylog 4–6 behavior, or `v3` for the legacy behavior. The default remains `v3`. This does not add a version to REST URLs. It can also be sourced from the `GRAYLOG_API_VERSION` environment variable.
 
 ## Authentication
 
