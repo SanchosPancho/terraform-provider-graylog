@@ -8,11 +8,14 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/SanchosPancho/terraform-provider-graylog/graylog/client/api"
+
 	"github.com/suzuki-shunsuke/go-httpclient/httpclient"
 )
 
 type Client struct {
-	Client httpclient.Client
+	Client     httpclient.Client
+	APIVersion string
 }
 
 func (cl Client) Get(ctx context.Context, id string) (map[string]interface{}, *http.Response, error) {
@@ -38,7 +41,7 @@ type GetAllParams struct {
 func (cl Client) Gets(
 	ctx context.Context, params *GetAllParams,
 ) (map[string]interface{}, *http.Response, error) {
-	var query url.Values
+	query := url.Values{}
 	if params != nil {
 		if params.Skip != 0 {
 			query.Add("skip", strconv.Itoa(params.Skip))
@@ -70,6 +73,9 @@ func (cl Client) Create(
 	if data == nil {
 		return nil, nil, errors.New("request body is nil")
 	}
+	if cl.APIVersion == "v7" {
+		data = api.Fields(data, "title", "description", "index_prefix", "index_analyzer", "shards", "replicas", "writable", "rotation_strategy_class", "rotation_strategy", "retention_strategy_class", "retention_strategy", "index_optimization_max_num_segments", "index_optimization_disabled", "field_type_refresh_interval", "use_legacy_rotation", "data_tiering", "field_type_profile", "index_template_type", "index_set_template_id", "field_restrictions", "creation_date")
+	}
 
 	body := map[string]interface{}{}
 	if v, ok := data["creation_date"]; !ok || v == "" || v == nil {
@@ -92,6 +98,10 @@ func (cl Client) Update(
 	}
 	if data == nil {
 		return nil, nil, errors.New("request body is nil")
+	}
+	if cl.APIVersion == "v7" {
+		data = api.Fields(data, "title", "description", "shards", "replicas", "writable", "rotation_strategy_class", "rotation_strategy", "retention_strategy_class", "retention_strategy", "index_optimization_max_num_segments", "index_optimization_disabled", "field_type_refresh_interval", "use_legacy_rotation", "data_tiering", "field_type_profile", "field_restrictions")
+		data["id"] = id
 	}
 
 	body := map[string]interface{}{}

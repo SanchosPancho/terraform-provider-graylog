@@ -2,7 +2,8 @@
 This repository was forked from https://github.com/zahiar/terraform-provider-graylog
 First of all - thank's to @zahiar for his hard work on this project.
 
-This fork will be adapted for version 5+ when time permits.
+This fork includes a Graylog 7 compatibility mode. Set `api_version = "v7"`
+when using Graylog 7.x (request models checked against 7.1.10).
 By using this provider, you accept full responsibility for any consequences that may occur.
 
 # Terraform Provider: Graylog
@@ -30,8 +31,15 @@ For more detailed instructions and documentation on the resources and data sourc
 [Terraform Registry](https://registry.terraform.io/providers/SanchosPancho/graylog/latest/docs).
 
 ## Maintenance
+
 This provider is maintained during free time, so if you are interested in helping to develop this further, you
 are more than welcome to submit a pull request or raise a ticket if you'd prefer.
+
+## Graylog 7 compatibility
+
+`api_version` selects provider compatibility behavior, not a REST URL prefix.
+Use `v7` with Graylog 7.x. Existing `v3` and `v4` configurations retain their
+previous payload formats. The default remains `v3` for backward compatibility.
 
 ## Development
 

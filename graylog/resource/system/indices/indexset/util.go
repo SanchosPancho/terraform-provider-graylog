@@ -19,6 +19,11 @@ func getDataFromResourceData(d *schema.ResourceData) (map[string]interface{}, er
 	if err != nil {
 		return nil, err
 	}
+	// An omitted optional JSON value is represented by an empty string in the
+	// Terraform SDK. It must become JSON null before decoding the request.
+	if data[keyDataTiering] == "" {
+		data[keyDataTiering] = "null"
+	}
 	if err := convert.JSONToData(data, keyRotationStrategy, keyRetentionStrategy, keyDataTiering); err != nil {
 		return nil, err
 	}

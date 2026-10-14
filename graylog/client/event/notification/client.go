@@ -5,11 +5,14 @@ import (
 	"errors"
 	"net/http"
 
+	"github.com/SanchosPancho/terraform-provider-graylog/graylog/client/api"
+
 	"github.com/suzuki-shunsuke/go-httpclient/httpclient"
 )
 
 type Client struct {
-	Client httpclient.Client
+	Client     httpclient.Client
+	APIVersion string
 }
 
 func (cl Client) Get(
@@ -39,7 +42,7 @@ func (cl Client) Create(
 	resp, err := cl.Client.Call(ctx, httpclient.CallParams{
 		Method:       "POST",
 		Path:         "/events/notifications",
-		RequestBody:  data,
+		RequestBody:  api.CreateEntity(cl.APIVersion, data),
 		ResponseBody: &body,
 	})
 	return body, resp, err

@@ -5,11 +5,14 @@ import (
 	"errors"
 	"net/http"
 
+	"github.com/SanchosPancho/terraform-provider-graylog/graylog/client/api"
+
 	"github.com/suzuki-shunsuke/go-httpclient/httpclient"
 )
 
 type Client struct {
-	Client httpclient.Client
+	Client     httpclient.Client
+	APIVersion string
 }
 
 func (cl Client) Get(
@@ -44,12 +47,15 @@ func (cl Client) Create(
 	if data == nil {
 		return nil, nil, errors.New("request body is nil")
 	}
+	if cl.APIVersion == "v7" {
+		data = api.Fields(data, "title", "description", "rules", "content_pack", "matching_type", "remove_matches_from_default_stream", "index_set_id")
+	}
 
 	body := map[string]interface{}{}
 	resp, err := cl.Client.Call(ctx, httpclient.CallParams{
 		Method:       "POST",
 		Path:         "/streams",
-		RequestBody:  data,
+		RequestBody:  api.CreateEntity(cl.APIVersion, data),
 		ResponseBody: &body,
 	})
 	return body, resp, err
@@ -63,6 +69,9 @@ func (cl Client) Update(
 	}
 	if data == nil {
 		return nil, nil, errors.New("request body is nil")
+	}
+	if cl.APIVersion == "v7" {
+		data = api.Fields(data, "title", "description", "matching_type", "remove_matches_from_default_stream", "index_set_id")
 	}
 	body := map[string]interface{}{}
 	resp, err := cl.Client.Call(ctx, httpclient.CallParams{

@@ -5,6 +5,8 @@ import (
 	"errors"
 	"net/http"
 
+	"github.com/SanchosPancho/terraform-provider-graylog/graylog/client/api"
+
 	"github.com/suzuki-shunsuke/go-httpclient/httpclient"
 )
 
@@ -19,7 +21,7 @@ func (cl Client) Get(
 		return nil, nil, errors.New("username is required")
 	}
 	var path string
-	if api_version == "v4" {
+	if api.UsesUserIDs(api_version) {
 		path = "/users/id/" + name
 	} else {
 		path = "/users/" + name
